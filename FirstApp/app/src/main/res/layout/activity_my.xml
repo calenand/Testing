@@ -37,6 +37,27 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:onClick="showToastFlower"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Animals"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:onClick="showToastAnimals"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clouds"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:onClick="showToastClouds"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sunsets"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:onClick="showToastSunsets"/>
 
     </LinearLayout>
 </RelativeLayout>
