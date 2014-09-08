@@ -17,6 +17,7 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
 
     private ArrayList<MyListItem>myListCategory;
     private  MyListAdapter myListAdapter;
+    private PreferenceManager myManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +35,10 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
         myListAdapter=new MyListAdapter(this,myListCategory);
         myList.setAdapter(myListAdapter);
         myList.setOnItemClickListener(this);
+
+        myManager = new PreferenceManager(this);
     }
-    public void showToast(View landscapeButton){
-        Toast.makeText(this,"Your Clicking Landscape",Toast.LENGTH_LONG).show();
-    }
-    public void showToastFlower(View landscapeButton){
-        Toast.makeText(this,"Your Clicking Flowers",Toast.LENGTH_LONG).show();
-    }
-    public void showToastAnimals(View landscapeButton){
-        Toast.makeText(this,"Your Clicking Animals",Toast.LENGTH_LONG).show();
-    }
-    public void showToastClouds(View landscapeButton){
-        Toast.makeText(this,"Your Clicking Clouds",Toast.LENGTH_LONG).show();
-    }
-    public void showToastSunsets(View landscapeButton){
-        Toast.makeText(this,"Your Clicking Sunsets",Toast.LENGTH_LONG).show();
-    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -71,6 +60,7 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this,"Your Clicking " + myListAdapter.getItem(position).myTitle,Toast.LENGTH_LONG).show();
+        myManager.saveSharedPreference(myListAdapter.getItem(position).myTitle, !myManager.getSavedPreference(myListAdapter.getItem(position).myTitle));
+   myListAdapter.notifyDataSetChanged();
     }
 }

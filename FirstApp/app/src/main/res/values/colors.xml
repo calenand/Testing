@@ -2,4 +2,5 @@
 <resources>
     <color name="blue">#ff0000cc</color>
     <color name="light_blue">#DD000099</color>
+    <color name="trans_red">#44BB0000</color>
 </resources>

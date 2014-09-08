@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,17 +18,19 @@ import java.util.ArrayList;
 /**
  * Created by Jason on 9/6/2014.
  */
-public class MyListAdapter extends BaseAdapter{
+public class MyListAdapter extends BaseAdapter {
 
     private final String PREFS_KEY = "SHARED_PREFERENCES";
     private final String SELECTED_KEY_PREFIX = "selected";
 
     private ArrayList<MyListItem>myListCategory;
     private Context myContext;
+    private PreferenceManager mManager;
 
     public MyListAdapter(Context context, ArrayList<MyListItem>listCategory){
         myListCategory=listCategory;
         myContext=context;
+        mManager = new PreferenceManager(context);
     }
 
     @Override
@@ -64,6 +67,12 @@ public class MyListAdapter extends BaseAdapter{
         rowView.title.setText(getItem(position).myTitle);
         convertView.setBackgroundDrawable(getItem(position).myBackground);
 
+        if(!mManager.getSavedPreference(rowView.title.getText().toString()))
+            convertView.findViewById(R.id.main_container).setBackgroundColor(myContext.getResources().getColor(R.color.trans_red));
+        else
+            convertView.findViewById(R.id.main_container).setBackgroundColor(myContext.getResources().getColor(android.R.color.transparent));
+
+
         /* FOR CHECKBOX d
         final SharedPreferences prefs = myContext.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
         rowView.selected.setSelected(prefs.getBoolean(SELECTED_KEY_PREFIX + position, false));
@@ -78,6 +87,5 @@ public class MyListAdapter extends BaseAdapter{
 
         return convertView;
     }
-
 
 }
